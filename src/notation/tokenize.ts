@@ -102,7 +102,7 @@ const isWordChar = (c: string) => /[A-Za-z0-9']/.test(c);
 /** Longest table entry matching at `i`, respecting the word-boundary guard. */
 function matchEntry(src: string, i: number, table: Entry[], caseSensitive: boolean): Entry | null {
 	for (const e of table) {
-		const seg = src.substr(i, e.text.length);
+		const seg = src.slice(i, i + e.text.length);
 		if (seg.length < e.text.length) continue;
 		const hit = caseSensitive ? seg === e.text : seg.toLowerCase() === e.lower;
 		if (!hit) continue;
@@ -193,7 +193,7 @@ export function tokenize(src: string, profile: GameProfile): Move[] {
 		if (ent) {
 			push({
 				kind: ent.kind,
-				raw: src.substr(i, ent.text.length),
+				raw: src.slice(i, i + ent.text.length),
 				label: ent.label,
 				title: ent.title,
 				color: ent.color,

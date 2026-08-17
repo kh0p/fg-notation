@@ -146,6 +146,13 @@ Arrow glyphs are drawn inline as SVG rather than fetched from a wiki or combo
 site, so `:img` works offline, in exports, and without hotlinking anyone's
 assets.
 
+## Clipboard use
+
+Each combo card has a copy button that writes the raw notation to your
+clipboard. It only ever *writes*, never reads, and only in response to a click.
+Turn it off with the "Copy button" setting if you would rather the plugin not
+touch the clipboard at all.
+
 ## Development
 
 ```bash

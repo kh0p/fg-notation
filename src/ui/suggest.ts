@@ -5,7 +5,6 @@ import {
 	EditorSuggest,
 	EditorSuggestContext,
 	EditorSuggestTriggerInfo,
-	TFile,
 } from "obsidian";
 import type { GameProfile } from "../types";
 import type { FgSettings } from "../settings";

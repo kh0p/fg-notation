@@ -179,12 +179,19 @@ function renderCombo(
 			const btn = tools.createEl("button", { cls: "fgn-copy", attr: { type: "button" } });
 			setIcon(btn, "copy");
 			btn.setAttr("aria-label", "Copy notation");
-			btn.addEventListener("click", async (ev) => {
-				ev.preventDefault();
+
+			const copy = async () => {
 				await navigator.clipboard.writeText(combo.input);
 				setIcon(btn, "check");
 				new Notice("Notation copied");
 				window.setTimeout(() => setIcon(btn, "copy"), 1200);
+			};
+
+			// The listener itself stays synchronous: an async callback here would
+			// hand a floating promise to a void-returning slot.
+			btn.addEventListener("click", (ev) => {
+				ev.preventDefault();
+				void copy();
 			});
 		}
 	}

@@ -60,9 +60,8 @@ export default class FgNotationPlugin extends Plugin {
 		// Safety net for versions that key on the full `fg:tokon` string, and for
 		// embeds. Every `pre > code` is checked against its own fence line.
 		this.registerMarkdownPostProcessor((el, ctx) => {
-			const codes = Array.from(el.querySelectorAll("pre > code")) as HTMLElement[];
-			for (const code of codes) {
-				const pre = code.parentElement as HTMLElement | null;
+			for (const code of el.findAll("pre > code")) {
+				const pre = code.parentElement;
 				if (!pre) continue;
 
 				const src = readSource(pre, code, el, ctx);
@@ -122,7 +121,8 @@ export default class FgNotationPlugin extends Plugin {
 	}
 
 	async loadSettings(): Promise<void> {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+		const stored = (await this.loadData()) as Partial<FgSettings> | null;
+		this.settings = Object.assign({}, DEFAULT_SETTINGS, stored ?? {});
 		setUserGames(this.settings.userGames ?? []);
 	}
 

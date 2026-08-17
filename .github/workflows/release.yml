@@ -7,6 +7,9 @@ on:
 
 permissions:
   contents: write
+  # Required to mint the signing certificate for build provenance.
+  id-token: write
+  attestations: write
 
 jobs:
   build:
@@ -25,6 +28,13 @@ jobs:
 
       - name: Test
         run: node test/run.mjs
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            main.js
+            styles.css
 
       - name: Create or update release
         env:
