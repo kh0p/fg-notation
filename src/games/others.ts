@@ -1,0 +1,187 @@
+import type { GameProfile } from "../types";
+import { C, btn, mech } from "./palette";
+
+export const UNI: GameProfile = {
+	id: "uni",
+	name: "Under Night In-Birth II Sys:Celes",
+	short: "UNI2",
+	aliases: ["uni2", "unib", "uniclr", "underNight"],
+	family: "numpad",
+	caseSensitive: false,
+	accent: "#6366f1",
+	buttons: [
+		btn("A", "Light attack", C.light),
+		btn("B", "Medium attack", C.medium),
+		btn("C", "Heavy attack", C.heavy),
+		btn("D", "Force Function", C.unique),
+	],
+	mechanics: [
+		mech("EXS", "Existence / EX special", C.special),
+		mech("IW", "Infinite Worth", C.super),
+		mech("IWEXS", "Infinite Worth EXS", C.super),
+		mech("VO", "Veil Off", C.drive),
+		mech("CS", "Chain Shift", C.unique),
+		mech("GRD", "GRD gauge", C.system),
+		mech("Shield", "Shield", C.system),
+		mech("AT", "Assault", C.system),
+	],
+};
+
+export const MBTL: GameProfile = {
+	id: "mbtl",
+	name: "Melty Blood: Type Lumina",
+	short: "MBTL",
+	aliases: ["melty", "meltyblood"],
+	family: "numpad",
+	caseSensitive: false,
+	accent: "#f43f5e",
+	buttons: [
+		btn("A", "Light attack", C.light),
+		btn("B", "Medium attack", C.medium),
+		btn("C", "Heavy attack", C.heavy),
+		btn("D", "Shield / Rapid Beat", C.unique),
+	],
+	mechanics: [
+		mech("MD", "Moon Drive", C.drive),
+		mech("MS", "Moon Skill", C.drive),
+		mech("AD", "Arc Drive", C.super),
+		mech("LA", "Last Arc", C.super),
+		mech("EX", "EX special", C.special),
+		mech("RB", "Rapid Beat", C.system),
+		mech("Shield", "Shield", C.system),
+	],
+};
+
+export const KOF15: GameProfile = {
+	id: "kof",
+	name: "The King of Fighters XV",
+	short: "KOF XV",
+	aliases: ["kof15", "kofxv", "kof14"],
+	family: "numpad",
+	caseSensitive: false,
+	accent: "#eab308",
+	blurb: "A light punch, B light kick, C heavy punch, D heavy kick.",
+	buttons: [
+		btn("A", "Light punch", C.light),
+		btn("B", "Light kick", "#5ec8f5"),
+		btn("C", "Heavy punch", C.heavy),
+		btn("D", "Heavy kick", "#f58a5e"),
+	],
+	mechanics: [
+		mech("EX", "EX special", C.special),
+		mech("MAX", "MAX mode", C.super),
+		mech("QM", "Quick MAX", C.super),
+		mech("SS", "Shatter Strike", C.drive),
+		mech("CD", "Blowback attack (C+D)", C.drive),
+		mech("SDM", "Super Desperation Move", C.super),
+		mech("MDM", "MAX Desperation Move", C.super),
+		mech("DM", "Desperation Move", C.super),
+		mech("Climax", "Climax Super", C.super),
+		mech("HD", "Hyper Drive", C.drive),
+	],
+};
+
+export const COTW: GameProfile = {
+	id: "cotw",
+	name: "Fatal Fury: City of the Wolves",
+	short: "CotW",
+	aliases: ["fatalfury", "ff", "garou"],
+	family: "numpad",
+	caseSensitive: false,
+	accent: "#f97316",
+	buttons: [
+		btn("LP", "Light punch", C.light),
+		btn("LK", "Light kick", C.light),
+		btn("HP", "Heavy punch", C.heavy),
+		btn("HK", "Heavy kick", C.heavy),
+	],
+	mechanics: [
+		mech("REV", "REV system", C.drive),
+		mech("RA", "REV Arts", C.drive),
+		mech("RAC", "REV Accel", C.drive),
+		mech("RB", "REV Blow", C.drive),
+		mech("RG", "REV Guard", C.system),
+		mech("SPG", "Selective Potential Gear", C.super),
+		mech("EX", "EX special", C.special),
+		mech("HD", "Hidden Gear (super)", C.super),
+		mech("BR", "Braking", C.system),
+		mech("FS", "Feint", C.system),
+	],
+};
+
+export const MK1: GameProfile = {
+	id: "mk1",
+	name: "Mortal Kombat 1",
+	short: "MK1",
+	aliases: ["mk", "mk11", "injustice", "inj2", "nrs"],
+	family: "nrs",
+	caseSensitive: false,
+	accent: "#dc2626",
+	blurb: "1 front punch, 2 back punch, 3 front kick, 4 back kick. F/B/D/U directions.",
+	buttons: [
+		btn("1", "Front punch", C.punch),
+		btn("2", "Back punch", "#7ab7f7"),
+		btn("3", "Front kick", C.kick),
+		btn("4", "Back kick", "#f7c07a"),
+	],
+	directions: [
+		mech("F", "Forward"),
+		mech("B", "Back"),
+		mech("D", "Down"),
+		mech("U", "Up"),
+		mech("DB", "Down-back"),
+		mech("DF", "Down-forward"),
+		mech("UB", "Up-back"),
+		mech("UF", "Up-forward"),
+	],
+	mechanics: [
+		mech("AMP", "Amplify", C.special),
+		mech("EX", "Amplified special", C.special),
+		mech("FB", "Fatal Blow", C.super),
+		mech("KB", "Krushing Blow", C.unique),
+		mech("Kameo", "Kameo assist", C.assist),
+		mech("KA", "Kameo assist", C.assist),
+		mech("BRK", "Breakaway", C.system),
+		mech("MB", "Meter burn", C.special),
+		mech("Flawless", "Flawless Block", C.system),
+	],
+};
+
+/** Fallback used for `fg` with no game, or an unknown id. */
+export const GENERIC: GameProfile = {
+	id: "generic",
+	name: "Generic (numpad)",
+	short: "FG",
+	aliases: ["fgc", "any", "numpad"],
+	family: "numpad",
+	caseSensitive: false,
+	accent: "#64748b",
+	blurb: "Numpad notation with a broad button vocabulary. Used when no game is given.",
+	buttons: [
+		btn("LP", "Light punch", C.light),
+		btn("MP", "Medium punch", C.medium),
+		btn("HP", "Heavy punch", C.heavy),
+		btn("LK", "Light kick", C.light),
+		btn("MK", "Medium kick", C.medium),
+		btn("HK", "Heavy kick", C.heavy),
+		btn("L", "Light", C.light),
+		btn("M", "Medium", C.medium),
+		btn("H", "Heavy", C.heavy),
+		btn("S", "Special / Slash", C.special),
+		btn("U", "Unique", C.unique),
+		btn("P", "Punch", C.punch),
+		btn("K", "Kick", C.kick),
+		btn("D", "Drive / Dust", C.dust),
+		btn("A", "Attack A / assist", C.assist),
+		btn("B", "Attack B", C.medium),
+		btn("C", "Attack C", C.heavy),
+	],
+	mechanics: [
+		mech("EX", "EX special", C.special),
+		mech("OD", "Overdrive", C.special),
+		mech("SUPER", "Super", C.super),
+		mech("RC", "Roman / Rapid Cancel", C.unique),
+	],
+};
+
+export const OTHER_GAMES = [UNI, MBTL, KOF15, COTW, MK1, GENERIC];

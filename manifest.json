@@ -1,0 +1,10 @@
+{
+	"id": "fg-notation",
+	"name": "FG Notation",
+	"version": "1.0.0",
+	"minAppVersion": "1.4.0",
+	"description": "Render fighting game combo notation for Marvel Tokon, Street Fighter, Tekken, Guilty Gear, Granblue and more into clean, colour-coded combos.",
+	"author": "de_teaya",
+	"authorUrl": "https://github.com/kh0p",
+	"isDesktopOnly": false
+}

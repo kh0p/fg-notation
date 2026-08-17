@@ -1,0 +1,528 @@
+/* @settings
+
+name: FG Notation
+id: fg-notation
+settings:
+    -
+        id: fgn-header
+        title: Combo cards
+        type: heading
+        level: 2
+    -
+        id: fgn-font-size
+        title: Notation size
+        description: Base font size of the rendered combo.
+        type: variable-number-slider
+        default: 15
+        min: 11
+        max: 24
+        step: 1
+        format: px
+    -
+        id: fgn-chip-radius
+        title: Chip corner radius
+        type: variable-number-slider
+        default: 7
+        min: 0
+        max: 16
+        step: 1
+        format: px
+    -
+        id: fgn-card-radius
+        title: Card corner radius
+        type: variable-number-slider
+        default: 10
+        min: 0
+        max: 20
+        step: 1
+        format: px
+    -
+        id: fgn-accent-bar
+        title: Accent bar width
+        description: The coloured stripe down the left edge of each card.
+        type: variable-number-slider
+        default: 3
+        min: 0
+        max: 8
+        step: 1
+        format: px
+    -
+        id: fgn-btn-tint
+        title: Button fill strength
+        description: How strongly attack buttons are tinted with their colour.
+        type: variable-number-slider
+        default: 14
+        min: 0
+        max: 60
+        step: 2
+        format: '%'
+    -
+        id: fgn-chip-bg
+        title: Chip background
+        type: variable-themed-color
+        format: hex
+        opacity: true
+        default-light: '#00000008'
+        default-dark: '#ffffff0d'
+
+*/
+
+.fgn {
+	--fgn-font-size: 15px;
+	--fgn-chip-radius: 7px;
+	--fgn-card-radius: 10px;
+	--fgn-accent-bar: 3px;
+	--fgn-btn-tint: 14%;
+	--fgn-chip-bg: var(--background-secondary);
+	--fgn-accent: var(--text-accent);
+
+	font-size: var(--fgn-font-size);
+	line-height: 1.5;
+	margin: 0.6em 0;
+}
+
+.fgn--sm {
+	--fgn-font-size: 13px;
+}
+.fgn--lg {
+	--fgn-font-size: 18px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Card                                                                       */
+/* -------------------------------------------------------------------------- */
+
+.fgn-card {
+	position: relative;
+	background: var(--background-primary-alt);
+	border: 1px solid var(--background-modifier-border);
+	border-left: var(--fgn-accent-bar) solid var(--fgn-accent);
+	border-radius: var(--fgn-card-radius);
+	padding: 0.7em 0.85em;
+	margin-bottom: 0.5em;
+}
+
+.fgn-card:last-child {
+	margin-bottom: 0;
+}
+
+.fgn--compact .fgn-card {
+	background: none;
+	border: none;
+	border-left: var(--fgn-accent-bar) solid var(--fgn-accent);
+	border-radius: 0;
+	padding: 0.1em 0 0.1em 0.6em;
+}
+
+.fgn-head {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	margin-bottom: 0.4em;
+}
+
+.fgn-name {
+	font-weight: 600;
+	font-size: 1.02em;
+	color: var(--text-normal);
+	flex: 1;
+	min-width: 0;
+}
+
+.fgn-name--empty {
+	height: 0;
+}
+
+.fgn-tools {
+	display: flex;
+	align-items: center;
+	gap: 0.4em;
+	flex-shrink: 0;
+}
+
+.fgn-badge {
+	font-size: 0.7em;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	padding: 0.2em 0.55em;
+	border-radius: 999px;
+	color: var(--fgn-accent);
+	background: color-mix(in srgb, var(--fgn-accent) 15%, transparent);
+	border: 1px solid color-mix(in srgb, var(--fgn-accent) 30%, transparent);
+	white-space: nowrap;
+}
+
+.fgn-copy {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.7em;
+	height: 1.7em;
+	padding: 0;
+	border: none;
+	border-radius: 5px;
+	background: transparent;
+	color: var(--text-faint);
+	cursor: pointer;
+	box-shadow: none;
+}
+
+.fgn-copy:hover {
+	background: var(--background-modifier-hover);
+	color: var(--text-normal);
+}
+
+.fgn-copy .svg-icon {
+	width: 0.95em;
+	height: 0.95em;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Stats                                                                      */
+/* -------------------------------------------------------------------------- */
+
+.fgn-stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35em;
+	margin-bottom: 0.55em;
+}
+
+.fgn-stat {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.35em;
+	font-size: 0.76em;
+	padding: 0.16em 0.5em;
+	border-radius: 5px;
+	background: var(--background-secondary);
+	border: 1px solid var(--background-modifier-border);
+}
+
+.fgn-stat-k {
+	color: var(--text-faint);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-size: 0.88em;
+}
+
+.fgn-stat-v {
+	color: var(--text-normal);
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+}
+
+.fgn-stat.is-dmg .fgn-stat-v {
+	color: #e8703a;
+}
+.fgn-stat.is-hits .fgn-stat-v {
+	color: #3aa6e8;
+}
+.fgn-stat.is-meter .fgn-stat-v {
+	color: #b98be8;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Sequence                                                                   */
+/* -------------------------------------------------------------------------- */
+
+.fgn-seq {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.12em 0.1em;
+	font-family: var(--font-monospace);
+}
+
+.fgn-move {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.08em;
+	white-space: nowrap;
+}
+
+.fgn-move--chip {
+	background: var(--fgn-chip-bg);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: var(--fgn-chip-radius);
+	padding: 0.18em 0.42em;
+}
+
+.fgn--plain .fgn-move {
+	padding: 0;
+	background: none;
+	border: none;
+}
+
+/* Tokens ------------------------------------------------------------------ */
+
+.fgn-tk {
+	display: inline-flex;
+	align-items: center;
+}
+
+.fgn-tk--btn {
+	--fgn-c: var(--text-normal);
+	color: var(--fgn-c);
+	background: color-mix(in srgb, var(--fgn-c) var(--fgn-btn-tint), transparent);
+	border: 1px solid color-mix(in srgb, var(--fgn-c) 34%, transparent);
+	border-radius: 4px;
+	padding: 0 0.28em;
+	font-weight: 700;
+	line-height: 1.35;
+}
+
+.fgn-tk--btn.fgn-tk--mono {
+	color: var(--text-normal);
+	background: none;
+	border-color: var(--background-modifier-border);
+}
+
+.fgn-tk--dir {
+	color: var(--text-muted);
+	font-weight: 700;
+}
+
+.fgn-tk--motion {
+	color: var(--text-normal);
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+.fgn-tk--mech {
+	--fgn-c: var(--text-accent);
+	color: var(--fgn-c);
+	font-weight: 700;
+	font-size: 0.88em;
+	letter-spacing: 0.03em;
+	border-bottom: 1.5px dotted color-mix(in srgb, var(--fgn-c) 55%, transparent);
+}
+
+.fgn-tk--mod {
+	color: var(--text-muted);
+	font-size: 0.92em;
+}
+
+.fgn-tk--mod.fgn-action {
+	font-family: var(--font-interface);
+	font-style: italic;
+	font-size: 0.85em;
+	color: var(--text-faint);
+	padding: 0 0.15em;
+}
+
+.fgn-tk--mod.fgn-repeat {
+	color: var(--text-accent);
+	font-weight: 700;
+	font-size: 0.85em;
+}
+
+.fgn-tk--text {
+	color: var(--text-normal);
+	font-family: var(--font-interface);
+	font-size: 0.92em;
+}
+
+.fgn-tk--punct {
+	color: var(--text-faint);
+}
+
+.fgn-tk--punct.fgn-hold {
+	color: var(--text-accent);
+	font-weight: 700;
+}
+
+.fgn-tk--punct.fgn-plus {
+	color: var(--text-muted);
+	padding: 0 0.05em;
+}
+
+.fgn-tk--punct.fgn-annot {
+	color: var(--text-faint);
+	font-size: 0.85em;
+}
+
+.fgn-sp {
+	display: inline-block;
+	width: 0.32em;
+}
+
+/* Icons ------------------------------------------------------------------- */
+
+.fgn-tk--icon {
+	gap: 0.02em;
+}
+
+.fgn-icon {
+	width: 1.05em;
+	height: 1.05em;
+	fill: currentColor;
+	color: var(--text-muted);
+	vertical-align: -0.15em;
+}
+
+.fgn-icon--neutral {
+	color: var(--text-faint);
+}
+
+.fgn-tk--motion .fgn-icon {
+	color: var(--text-normal);
+}
+
+/* Connectors -------------------------------------------------------------- */
+
+.fgn-conn {
+	color: var(--text-faint);
+	font-weight: 700;
+	padding: 0 0.28em;
+	user-select: none;
+}
+
+.fgn-conn.fgn-c-cancel {
+	color: var(--text-accent);
+	font-size: 0.82em;
+	letter-spacing: -0.05em;
+}
+
+.fgn-conn.fgn-c-link {
+	color: var(--text-muted);
+}
+
+.fgn-conn.fgn-c-imm {
+	color: var(--text-muted);
+}
+
+.fgn-conn.fgn-c-or {
+	color: var(--text-faint);
+	font-style: italic;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Footer bits                                                                */
+/* -------------------------------------------------------------------------- */
+
+.fgn-tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.3em;
+	margin-top: 0.45em;
+}
+
+.fgn-tag {
+	font-size: 0.75em;
+	color: var(--text-faint);
+	background: var(--background-secondary);
+	border-radius: 4px;
+	padding: 0.1em 0.4em;
+}
+
+.fgn-notes {
+	margin-top: 0.5em;
+	font-size: 0.86em;
+	color: var(--text-muted);
+	line-height: 1.5;
+}
+
+.fgn-video {
+	display: inline-block;
+	margin-top: 0.45em;
+	font-size: 0.82em;
+}
+
+.fgn-error {
+	font-size: 0.82em;
+	color: var(--text-error);
+	background: color-mix(in srgb, var(--text-error) 10%, transparent);
+	border-radius: 5px;
+	padding: 0.35em 0.6em;
+	margin-bottom: 0.45em;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Autocomplete                                                               */
+/* -------------------------------------------------------------------------- */
+
+.fgn-suggest {
+	display: flex;
+	align-items: center;
+	gap: 0.6em;
+}
+
+.fgn-suggest-dot {
+	--fgn-c: var(--text-accent);
+	width: 0.6em;
+	height: 0.6em;
+	border-radius: 999px;
+	background: var(--fgn-c);
+	flex-shrink: 0;
+}
+
+.fgn-suggest-dot.is-template {
+	background: var(--text-accent);
+	border-radius: 2px;
+}
+
+.fgn-suggest-body {
+	min-width: 0;
+}
+
+.fgn-suggest-title {
+	font-weight: 600;
+}
+
+.fgn-suggest-desc {
+	font-size: 0.8em;
+	color: var(--text-muted);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Settings tab                                                               */
+/* -------------------------------------------------------------------------- */
+
+.fgn-settings-games {
+	display: grid;
+	gap: 0.15em;
+	margin: 0.5em 0 1em;
+	font-size: 0.85em;
+}
+
+.fgn-settings-game {
+	display: grid;
+	grid-template-columns: 0.7em 6em 1fr;
+	align-items: center;
+	gap: 0.6em;
+	padding: 0.2em 0;
+	border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.fgn-settings-dot {
+	--fgn-c: var(--text-accent);
+	width: 0.6em;
+	height: 0.6em;
+	border-radius: 999px;
+	background: var(--fgn-c);
+}
+
+.fgn-settings-id {
+	font-family: var(--font-monospace);
+	font-weight: 600;
+	color: var(--text-normal);
+}
+
+.fgn-settings-name {
+	color: var(--text-muted);
+}
+
+.fgn-settings-alias {
+	display: none;
+}
+
+.fgn-settings-json {
+	width: 100%;
+	font-family: var(--font-monospace);
+	font-size: 0.85em;
+}
