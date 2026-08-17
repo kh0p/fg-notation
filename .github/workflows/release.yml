@@ -26,11 +26,15 @@ jobs:
       - name: Test
         run: node test/run.mjs
 
-      - name: Create release
+      - name: Create or update release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # The release may already exist if it was cut locally, so fall back
+          # to refreshing its assets instead of failing the run.
           gh release create "$GITHUB_REF_NAME" \
             --title "$GITHUB_REF_NAME" \
             --generate-notes \
-            main.js manifest.json styles.css
+            main.js manifest.json styles.css \
+          || gh release upload "$GITHUB_REF_NAME" \
+            main.js manifest.json styles.css --clobber
